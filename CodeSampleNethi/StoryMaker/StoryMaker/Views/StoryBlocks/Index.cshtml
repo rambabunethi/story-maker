@@ -1,0 +1,125 @@
+﻿@model IEnumerable<StoryMaker.Models.StoryBlock>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @{if (User.IsInRole("developer"))
+    {
+        @Html.ActionLink("Create New", "Create")
+    }}
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.collage.collageName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.storyBlockName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.storyBlockCaption)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.storyBlockDescription)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.storyBlockLocation)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.storyBlockOrderNumber)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.archivalStatus)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.uploadDate)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.temp_string1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.temp_string2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.temp_int1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.temp_int2)
+        </th>*@
+        <th>
+@{if (User.IsInRole("developer") || User.IsInRole("user"))
+  {
+             @Html.DisplayName("Image")
+  }}
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.collage.collageName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.storyBlockName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.storyBlockCaption)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.temp_string1)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.storyBlockLocation)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.storyBlockOrderNumber)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.archivalStatus)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.uploadDate)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.temp_string1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.temp_string2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.temp_int1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.temp_int2)
+        </td>*@
+        <td>
+@{if (User.IsInRole("developer") || User.IsInRole("user"))
+  {
+            <a href='@Url.Action("Details", "StoryBlocks", new { id = item.storyBlockId }, null)'>
+                <img src="@Url.Content(item.storyBlockLocation)" alt="" height="50px" width="50px" />
+            </a>
+  }
+}
+        </td>
+        <td>
+            @{if (User.IsInRole("developer"))
+              {
+            @Html.ActionLink("Edit | ", "Edit", new { id = item.storyBlockId }) 
+            @Html.ActionLink("Details | ", "Details", new { id = item.storyBlockId }) 
+            @Html.ActionLink("Delete", "Delete", new { id = item.storyBlockId })
+              }}
+            @{if (User.IsInRole("user"))
+              {
+            @Html.ActionLink("Details", "Details", new { id = item.storyBlockId }) 
+              }}
+        </td>
+    </tr>
+}
+
+</table>

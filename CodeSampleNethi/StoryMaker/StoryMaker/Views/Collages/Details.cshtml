@@ -1,0 +1,149 @@
+﻿@model StoryMaker.Models.Collage
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<style>
+    th, td {
+        padding: 15px;
+    }
+</style>
+
+<h2>Details</h2>
+@{
+
+    if (ViewBag.archival_stat == false)
+    {
+        <div>
+            <div>
+                <h4>Collage</h4>
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.story.storyName)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.story.storyName)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.collageName)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.collageName)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.collageDescription)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.collageDescription)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.orderNumber)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.orderNumber)
+                    </dd>
+
+                    @*<dt>
+                            @Html.DisplayNameFor(model => model.collageLocation)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.collageLocation)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.archivalStatus)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.archivalStatus)
+                        </dd>*@
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.uploadDate)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.uploadDate)
+                    </dd>
+
+                    @*<dt>
+                            @Html.DisplayNameFor(model => model.temp_string1)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.temp_string1)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.temp_string2)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.temp_string2)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.temp_int1)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.temp_int1)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.temp_int2)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.temp_int2)
+                        </dd>*@
+
+                </dl>
+            </div>
+            @{
+
+                <p align="center"><font size="5" color="Black">Story Blocks in Collage: @ViewBag.collageName</font></p>
+
+                <table align="center" cellpadding="25">
+                    <tr>
+                        @{
+        int j = 0;
+        foreach (var storyBlock in Model.StoryBlocks)
+        {
+
+            if (j % 3 == 0)
+            { @Html.Raw("</tr><tr>")}
+                                            <td>
+                                                <div @Url.Action("Details", "StoryBlocks", new { id = storyBlock.storyBlockId }, null)>
+                                                    <img src="@Url.Content(storyBlock.storyBlockLocation)" alt="" height="300px" width="300px" />
+                                                </div>
+                                                <div style="width: 300px;height: 150px;overflow: scroll;border:1px solid black;">@storyBlock.temp_string1</div>
+                                            </td>
+            j++;
+        }
+
+                        }
+                    </tr>
+                </table>
+            }
+            <p>
+                @Html.ActionLink("Edit", "Edit", new { id = Model.collageId }) |
+                @Html.ActionLink("Back to List", "Index")
+            </p>
+        </div>
+    }
+    else
+    {
+<p align="center"><font size="6" color="Black">The requested page has been archived</font></p>
+    }
+}

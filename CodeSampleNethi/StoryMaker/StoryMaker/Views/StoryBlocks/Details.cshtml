@@ -1,0 +1,135 @@
+﻿@model StoryMaker.Models.StoryBlock
+
+@{
+    ViewBag.Title = "Details";
+}
+@{
+
+    if (ViewBag.archival_stat == false)
+    {
+        <div>
+            <h2>Details</h2>
+
+            <div>
+                <h4>StoryBlock</h4>
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.collage.collageName)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.collage.collageName)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.storyBlockName)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.storyBlockName)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.storyBlockCaption)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.storyBlockCaption)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.storyBlockDescription)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.temp_string1)
+                    </dd>
+
+                    @*<dt>
+                            @Html.DisplayNameFor(model => model.storyBlockLocation)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.storyBlockLocation)
+                        </dd>*@
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.storyBlockOrderNumber)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.storyBlockOrderNumber)
+                    </dd>
+
+                    @*<dt>
+                            @Html.DisplayNameFor(model => model.archivalStatus)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.archivalStatus)
+                        </dd>*@
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.uploadDate)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.uploadDate)
+                    </dd>
+
+                    @*<dt>
+                            @Html.DisplayNameFor(model => model.temp_string1)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.temp_string1)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.temp_string2)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.temp_string2)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.temp_int1)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.temp_int1)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.temp_int2)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.temp_int2)
+                        </dd>*@
+
+                </dl>
+            </div>
+
+            <br>
+            <h3>Image in StoryBlock: @Model.storyBlockName</h3>
+            <div @Url.Action("Details", "StoryBlocks", new { id = Model.storyBlockId }, null)>
+                <img src="@Url.Content(Model.storyBlockLocation)" alt="" height="300px" width="300px" />
+            </div>
+
+
+            <br>
+            <br>
+            <p>
+                @Html.ActionLink("Edit", "Edit", new { id = Model.storyBlockId }) |
+                @Html.ActionLink("Back to List", "Index")
+            </p>
+        </div>
+    }
+    else
+    {
+        <p align="center"><font size="6" color="Black">The requested page has been archived</font></p>
+    }
+}

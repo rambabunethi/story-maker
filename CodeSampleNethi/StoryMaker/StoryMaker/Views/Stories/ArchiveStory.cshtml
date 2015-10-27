@@ -1,0 +1,90 @@
+﻿@model StoryMaker.Models.Story
+
+<h3>Are you sure you want to Archive this Story?</h3>
+<div>
+    <h4>Story</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.storyName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.storyName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.storyDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.storyDescription)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.storyLocation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.storyLocation)
+        </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.archivalStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.archivalStatus)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.uploadDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.uploadDate)
+        </dd>*@
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.temp_string1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.temp_string1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.temp_string2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.temp_string2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.temp_int1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.temp_int1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.temp_int2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.temp_int2)
+        </dd>*@
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="ArchiveStory" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

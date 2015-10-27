@@ -1,0 +1,86 @@
+﻿@model IEnumerable<StoryMaker.Models.Story>
+
+@{
+    ViewBag.Title = "Un-Archive Index";
+}
+
+<h2>Index</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.storyName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.storyDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.storyLocation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.archivalStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.uploadDate)
+        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.temp_string1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.temp_string2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.temp_int1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.temp_int2)
+            </th>*@
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.storyName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.storyDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.storyLocation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.archivalStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.uploadDate)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.temp_string1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.temp_string2)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.temp_int1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.temp_int2)
+                </td>*@
+            <td>
+    
+                @{if (User.IsInRole("admin"))
+                {
+                    @Html.ActionLink("Details |", "Details", new { id = item.storyId })
+                }}
+                @{if (User.IsInRole("admin"))
+                {
+                    @Html.ActionLink("Delete |", "Delete", new { id = item.storyId })
+                    @Html.ActionLink(" UnArchiveStory", "UnArchiveStory", new { id = item.storyId })
+                }}
+            </td>
+        </tr>
+    }
+
+</table>

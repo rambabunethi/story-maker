@@ -1,0 +1,101 @@
+﻿
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+        
+            <head>
+                <title>Story SlideShow</title>
+                <script type='text/javascript'
+                        src='http://jqueryjs.googlecode.com/files/jquery-1.3.2.min.js'>
+                </script>
+
+                <script type="text/javascript">
+                    var imageLocation = [@Html.Raw(ViewBag.imageLocation)];
+                    var imageCaption = '@ViewBag.imageCaption';
+                    var imageDescription = '@ViewBag.imageDescription';
+                    var imageDescriptionList = imageDescription.split('~');
+                    var imageCaptionList = imageCaption.split('~');
+                    var imageCaptionLength = imageCaptionList.length;
+                    var imageDescriptionLength = imageDescriptionList.length;
+                    var imageCount = imageLocation.length;
+                    var isPaused = false;
+
+                    $(function () {
+                        setInterval(Slider, 2000);
+                        $('.pause').on('click', function (e) {
+                            e.preventDefault();
+                            isPaused = true;
+                        });
+                        $('.resume').on('click', function (e) {
+                            e.preventDefault();
+                            isPaused = false;
+                        });
+                    });
+                    function Slider() {
+                        if (!isPaused) {
+                            $('#Image').fadeOut("fast", function () {
+                                $(this).attr('src', imageLocation[(imageLocation.length++) % imageCount]).fadeIn("fast");
+                            });
+                            $('#Caption').text(imageCaptionList[(imageCaptionList.length++) % imageCaptionLength]);
+                            $('#Description').text(imageDescriptionList[(imageDescriptionList.length++) % imageDescriptionLength]);
+                        }
+                    }
+
+                </script>
+            </head>
+            <body>
+@{
+
+        if (ViewBag.archival_stat == false)
+        {
+            <div>
+                <table style="float:left">
+
+                    <tr>
+                        <td colspan="2" style="padding-top:50px">
+
+                            <img id="Image" alt="" src="" height="400px" width="400px" />
+                        </td>
+                    </tr>
+                    <tr><td><br /></td></tr>
+                    <tr>
+                        <td colspan="2">
+                            Title: <label for="Image" id="Caption"></label>
+                        </td>
+
+                    </tr>
+
+
+                </table>
+                <table style="display: inline-block">
+                    <tr>
+                        <td style="padding-top:50px;padding-left:10px">
+                            <label id="Description" style="width: 400px;height: 400px;overflow: scroll;border:1px solid black; padding:10px 10px 10px 10px;"></label>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td style="float:left;padding-top:15px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="pause">Pause</button></td>
+                        <td style="display: inline-block;padding-top:15px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="resume">Resume</button></td>
+                    </tr>
+                </table>
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+            </div>
+        }
+        else
+        {
+                <p align="center"><font size="6" color="Black">The requested page has been archived</font></p>
+                }
+                }
+                @Html.ActionLink("Back to List", "Index")
+
+            </body>
+        </div></html>
+    }

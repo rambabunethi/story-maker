@@ -1,0 +1,104 @@
+﻿@model IEnumerable<StoryMaker.Models.Collage>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+@{if (User.IsInRole("developer"))
+{
+    @Html.ActionLink("Create New", "Create")
+}}
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.story.storyName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.collageName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.collageDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.orderNumber)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.collageLocation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.archivalStatus)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.uploadDate)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.temp_string1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.temp_string2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.temp_int1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.temp_int2)
+        </th>*@
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.story.storyName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.collageName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.collageDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.orderNumber)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.collageLocation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.archivalStatus)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.uploadDate)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.temp_string1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.temp_string2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.temp_int1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.temp_int2)
+        </td>*@
+        
+        <td>
+        @{if (User.IsInRole("developer"))
+        {
+            @Html.ActionLink("Edit |", "Edit", new { id=item.collageId })
+            @Html.ActionLink(" Details |", "Details", new { id = item.collageId })
+            @Html.ActionLink(" Delete ", "Delete", new { id = item.collageId })
+        }}
+@{if (User.IsInRole("user"))
+{
+            @Html.ActionLink("Details", "Details", new { id=item.collageId }) 
+            }}
+        </td>
+    </tr>
+}
+
+</table>

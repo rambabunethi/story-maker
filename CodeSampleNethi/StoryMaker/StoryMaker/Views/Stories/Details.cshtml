@@ -1,0 +1,156 @@
+﻿@model StoryMaker.Models.Story
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<style>
+    th, td {
+        padding: 15px;
+    }
+</style>
+
+@{
+    
+    if (ViewBag.archival_stat == false)
+    {
+        <h2>@ViewBag.Title</h2>
+        <div>
+            <h4>Story</h4>
+            <hr />
+            <dl class="dl-horizontal">
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.storyName)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.storyName)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.storyDescription)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.storyDescription)
+                </dd>
+
+                @*<dt>
+                        @Html.DisplayNameFor(model => model.storyLocation)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.storyLocation)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.archivalStatus)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.archivalStatus)
+                    </dd>*@
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.uploadDate)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.uploadDate)
+                </dd>
+
+                @*<dt>
+                        @Html.DisplayNameFor(model => model.temp_string1)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.temp_string1)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.temp_string2)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.temp_string2)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.temp_int1)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.temp_int1)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.temp_int2)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.temp_int2)
+                    </dd>*@
+
+            </dl>
+        </div>
+    }
+}
+
+@{
+    if(@ViewBag.archival_stat == false)
+    { 
+    <p align ="center"  ><font size="6" color="Black">Collages in Story: @ViewBag.storyName_tmp</font></p>
+    foreach (var collage in Model.Collages)
+    {
+        <br>
+    <p align="center"><font size="5">Displaying Collage: @Html.DisplayName(collage.collageName)</font></p>
+        <table align="center" cellpadding="25">
+                <tr>
+                    @{
+        int j = 0;
+                    foreach (var storyBlock in collage.StoryBlocks)
+                    {
+
+                        if (j % 3 == 0)
+                        { @Html.Raw("</tr><tr>")}
+                                <td>
+                                        <div @Url.Action("Details", "StoryBlocks", new { id = storyBlock.storyBlockId },null)>
+                                            <img src="@Url.Content(storyBlock.storyBlockLocation)" alt="" height="300px" width="300px" style="border-radius: 30px; " />
+                                        </div>
+                                        
+                                         </td>
+                        j++;
+                    }
+                   
+                    }
+                    
+                </tr>
+            
+         </table>
+    
+        <br>
+    }
+    }
+        else
+        { 
+            <p align="center"><font size="6" color="Black">The requested page has been archived</font></p>
+        }
+    }
+
+
+
+
+    <br>
+    <br>
+@{
+
+    if (ViewBag.archival_stat == false)
+    {
+<div>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.storyId }) |
+    @Html.ActionLink("Back to List", "Index")
+</div>
+}}
+
+
